@@ -6,6 +6,7 @@ Contents
 ---
 
 **I. Compiler**
+
 - Là quá trình chuyển đổi ngôn ngữ bậc cao sang ngôn ngữ máy.
 - Gồm 4 giai đoạn
 ![alt text](image.png)
