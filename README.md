@@ -485,7 +485,7 @@ Ví dụ:
 
 - `AND (&), OR(|), XOR(^), NOT(~)`
 
-![alt text](image.png)
+![alt text](bitwise.png)
 
 Ví dụ:
 
