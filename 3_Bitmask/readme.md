@@ -59,16 +59,23 @@ uint8_t B = 0b11101111;
     // bit dấu chỉ có ý nghĩa khi số có dấu (-8)
 ```
 
-📌 Ví dụ sử dụng bit mask
+📌 Ví dụ sử dụng bit mask và giải thích
 
 ```c
-include <stdio.h>
+
+#include <stdio.h>
 #include <stdint.h>
 
+/*
+    Sử dụng macro và bit wise để khai báo các tính năng
+    Phép dịch bit 1 << 0: 0b00000001 << 0
+                  1 << 1: 0b00000001 << 1 để khai báo tính năng TSHIRT
+    8 tính năng nằm trong 1 byte -> tối ưu bộ nhớ
+*/
 
-#define GENDER        1 << 0  // Bit 0: Giới tính (0 = Nữ, 1 = Nam)  0b00000001 << 0
+
+#define GENDER        1 << 0  // Bit 0: Giới tính (0 = Nữ, 1 = Nam)
 #define TSHIRT        1 << 1  // Bit 1: Áo thun (0 = Không, 1 = Có)
-0b00000001 << 1
 #define HAT           1 << 2  // Bit 2: Nón (0 = Không, 1 = Có)
 #define SHOES         1 << 3  // Bit 3: Giày (0 = Không, 1 = Có)
 // Tự thêm tính năng khác
@@ -77,14 +84,32 @@ include <stdio.h>
 #define FEATURE3      1 << 6  // Bit 6: Tính năng 3
 #define FEATURE4      1 << 7  // Bit 7: Tính năng 4
 
+/*
+    Sử dụng bit wise & để bật 1 tính năng mà không ảnh hưởng đến bit khác
+    enableFeature(&options, GENDER | TSHIRT | HAT);
+    uint8_t options = 0; // 0b00000000
+    0b00000000
+    &
+    0b00000111
+    ----------
+    0b00000111 -> thao tác với bit mà không ảnh hưởng tới bit khác
+
+*/
+
 void enableFeature(uint8_t *features, uint8_t feature) {
     *features |= feature;
-    /*
-    options = 0b00000000; features = &options;
-    Giả sử cần bật tính năng HAT ở bit 2
-    0b00000000 | 0b00000100 = 0b00000100
-    */
 }
+
+/*
+    Sử dụng bit wise | để thao tác
+    options = 0b00000111;
+    disableFeature(&options, TSHIRT);
+    0b00000111
+    |
+   ~0b00000010
+   ------------
+    0b00000101
+*/
 
 void disableFeature(uint8_t *features, uint8_t feature) {
     *features &= ~feature;
@@ -136,6 +161,23 @@ int main() {
     return 0;
 }
 
+
+```
+
+**Output**
+
+```c
+Selected Features:
+- Gender
+- Hat
+feature selected: 1
+feature selected: 0
+feature selected: 1
+feature selected: 0
+feature selected: 0
+feature selected: 0
+feature selected: 0
+feature selected: 0
 ```
 - Sử dụng phép dịch bit và macro để khai báo các tính năng (tối ưu bộ nhớ)
 - Dùng toán tử bit wise để bật tắt các tính năng mà không ảnh huởng đến tính năng khác, kiểm tra xem tính năng nào đã được bật.

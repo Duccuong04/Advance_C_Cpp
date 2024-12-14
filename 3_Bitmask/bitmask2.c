@@ -1,5 +1,12 @@
-include <stdio.h>
+#include <stdio.h>
 #include <stdint.h>
+
+/*
+    Sử dụng macro và bit wise để khai báo các tính năng
+    Phép dịch bit 1 << 0: 0b00000001 << 0
+                  1 << 1: 0b00000001 << 1 để khai báo tính năng TSHIRT
+    8 tính năng nằm trong 1 byte -> tối ưu bộ nhớ
+*/
 
 
 #define GENDER        1 << 0  // Bit 0: Giới tính (0 = Nữ, 1 = Nam)
@@ -12,9 +19,32 @@ include <stdio.h>
 #define FEATURE3      1 << 6  // Bit 6: Tính năng 3
 #define FEATURE4      1 << 7  // Bit 7: Tính năng 4
 
+/*
+    Sử dụng bit wise & để bật 1 tính năng mà không ảnh hưởng đến bit khác
+    enableFeature(&options, GENDER | TSHIRT | HAT);
+    uint8_t options = 0; // 0b00000000
+    0b00000000
+    &
+    0b00000111
+    ----------
+    0b00000111 -> thao tác với bit mà không ảnh hưởng tới bit khác
+
+*/
+
 void enableFeature(uint8_t *features, uint8_t feature) {
     *features |= feature;
 }
+
+/*
+    Sử dụng bit wise | để thao tác
+    options = 0b00000111;
+    disableFeature(&options, TSHIRT);
+    0b00000111
+    |
+   ~0b00000010
+   ------------
+    0b00000101
+*/
 
 void disableFeature(uint8_t *features, uint8_t feature) {
     *features &= ~feature;
