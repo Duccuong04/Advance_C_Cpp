@@ -1427,6 +1427,53 @@ int main(int argc, char const *argv[])
     */
 ```
 
+### Ứng dụng
+
+- Struct: Viết thư viện, cấu hình, tính năng,..
+- Kết hợp struct và union trong việc truyền dữ liệu của 2 vi điều khiển
+
+![alt text](struct1.png)
+
+![alt text](struct2.png)
+
+```c
+typedef union {
+    struct {
+        uint8_t id[2];
+        uint8_t data[4];
+        uint8_t check_sum[2];
+    } data;
+
+    uint8_t frame[8];
+
+} Data_Frame;
+
+```
+- Khai báo biến sao cho tránh padding
+
+- Struct lồng vào union, chỉ dùng 1 địa chỉ, 1 trong 3 thành phần thay đổi thì thành phần truyền đi frame sẽ được cập nhật
+
+- Chuyển số thành chuỗi
+
+```c
+int main(int argc, char const *argv[])
+{
+    Data_Frame transmitter_data;
+    
+    strcpy(transmitter_data.data.id, "10");
+    strcpy(transmitter_data.data.data, "1234");
+    strcpy(transmitter_data.data.check_sum, "70");
+
+        Data_Frame receiver_data;
+    strcpy(receiver_data.frame, transmitter_data.frame);
+    
+    
+    return 0;
+}
+```
+- Debug truyền và nhận dữ liệu
+![alt text](debug.png)
+
 </details>
 
 <details>
