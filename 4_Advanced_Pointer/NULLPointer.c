@@ -2,6 +2,7 @@
 
 int main(int argc, char const *argv[])
 {
+
     int *ptr = NULL;
 
     printf("Addr of ptr: %p\n", ptr);
