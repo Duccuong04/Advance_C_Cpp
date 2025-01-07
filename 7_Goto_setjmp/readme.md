@@ -68,3 +68,4 @@ int main(int argc, char const *argv[])
 - 2 tham số truyền vào:
 buf: vị trí `setjmp(buf)`; `1` giá trị trả về của `setjmp(buf)`
 
+
