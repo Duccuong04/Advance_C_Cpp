@@ -16,5 +16,5 @@
 
 Thêm 1 node vào phía cuối
 
-- Nếu sử dụng con trỏ first cấp 1: nếu danh sách liên kết chưa có node nào sẽ gây lỗi (do kết thúc hàm con trỏ first đã được giải phóng) -> dùng con trỏ cấp 2
+- Nếu sử dụng con trỏ first cấp 1: nếu danh sách liên kết chưa có node nào sẽ gây lỗi (do kết thúc hàm con trỏ first đã được giải phóng, không thêm node mới vào được) -> dùng con trỏ cấp 2
 

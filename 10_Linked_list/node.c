@@ -19,27 +19,114 @@ Node* createNode(int value)
     return node; // trả về địa chỉ 
 }
 
+void display (Node *first)
+{
+    int i = 0;
+    if(first == NULL)
+    {
+        printf("Ko có node");
+    }
+
+    else
+    {
+        while(first != NULL)
+        {
+            printf("Node %d: %d\n", i, first->data);
+            first = first->next;
+            i++;
+        }
+    }
+}
+
 /* thêm 1 node vào phía cuối 
 - Tìm node cuối cùng
+- Khai báo con trỏ cấp 2 để có thể thao tác trực tiếp với địa chỉ
 */ 
 void push_back(Node **first, int data)
 {
     // tạo node
     Node *new_node = createNode(data);
 
-    if(*first == NULL)
+    if(*first == NULL) // giải tham chiếu để đọc được địa chỉ node đầu tiên
     {
         *first = new_node;
     } 
 
-    while((*first)->next != NULL)
+    Node *p = *first; // khai báo con trỏ trung gian để không làm việc trực tiếp với first
+
+    while(p->next != NULL)
     {
-        *first = (*first)->next;
+        p = p->next;
     }
 
-    (*first)->next = new_node;
+    p->next = new_node;
 }
 
+/*
+Chèn 1 node vào vị trí bất kì
+- Duyệt địa chỉ để tìm tới node tương ứng
+- Thay đổi con trỏ next
+*/
+void insert(Node **first, int data, int position)
+{
+    Node *new_node = createNode(data);
+
+    if(*first == NULL)
+    {
+        *first = new_node;
+    }
+
+    Node *p = *first;
+    int k = 0;
+
+    while(p->next != NULL && k!= position - 1)
+    {
+        k++;
+        p = p->next;
+    }
+
+    if(k == position - 1)
+    {
+        new_node->next = p->next;
+        p->next = new_node;
+    }
+}
+/*
+Xóa node đầu tiên
+*/
+void pop_front(Node **first)
+{
+    if(*first == NULL)
+    {
+        printf("ko có node");
+    }
+    Node *p = *first;
+    free(p);
+    *first = (*first)->next;
+}
+/*
+Xoá node cuối cùng
+*/
+void pop_back(Node **first)
+{
+    if(*first == NULL)
+    {
+        printf("ko có node");
+    }
+    
+    Node *p = *first;
+    if(p->next == NULL)
+    {
+        free(p);
+        *first = NULL;
+    }
+    while(p->next->next != NULL)
+    {
+        p = p->next;
+    }
+    free(p->next);
+    p->next = NULL;   
+}
 int main(int argc, char const *argv[])
 {
     Node *first = createNode(1);   // first = 0x01, &first: địa chỉ của con trỏ
@@ -49,5 +136,17 @@ int main(int argc, char const *argv[])
     // liên kết 3 node
     first->next = second;
     second->next = third;
+    
+    
+
+    //insert(&first, 100, 3);
+
+    pop_front(&first);
+
+    pop_back(&first);
+
+    display(first);
+
+    push_back(&first, 15);
     return 0;
 }
