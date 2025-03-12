@@ -3,9 +3,6 @@
 - “Polymorphism” có nghĩa “nhiều hình thức”, hay “nhiều
 dạng sống”;
 
-- Một vật có tính đa hình (polymorphic) là vật có thể xuất
-hiện dưới nhiều dạng;
-
 - Đa hình là hiện tượng các đối tượng
 thuộc các lớp khác nhau có khả năng hiểu cùng một
 thông điệp theo các cách khác nhau.
@@ -96,12 +93,12 @@ o “override” có nghĩa “vượt quyền”.
 sở có thể bị “che” bởi định nghĩa tại lớp dẫn xuất;
 
 - Với method overriding, toàn bộ thông điệp (cả tên và tham
-số) là hoàn toàn giống nhau – điểm khác nhau là lớp đối
-tượng được nhận thông điệp.
+số) là ***hoàn toàn giống nhau – điểm khác nhau là lớp đối
+tượng được nhận thông điệp.***
 
 - Khi một hàm ảo được ghi đè, hành vi của nó sẽ phụ thuộc vào kiểu của đối tượng thực tế, chứ không phải kiểu của con trỏ hay tham chiếu.
 
-- Tính đa hình Run-time xảy ra khi quyết định gọi hàm nào (phiên bản của class cha hay class con) được đưa ra tại thời điểm chạy, không phải lúc biên dịch, giúp mở rộng chức năng. Điều này giúp chương trình linh hoạt hơn, cho phép việc mở rộng chức năng mà không cần sửa đổi mã nguồn hiện tại.
+- Tính đa hình Run-time xảy ra khi quyết định gọi hàm nào (phiên bản của class cha hay class con) được đưa ra tại ***thời điểm chạy***, không phải lúc biên dịch, giúp mở rộng chức năng. Điều này giúp chương trình linh hoạt hơn, cho phép việc mở rộng chức năng mà không cần sửa đổi mã nguồn hiện tại.
 
 
 ### 2.VIRTUAL FUNCTION
