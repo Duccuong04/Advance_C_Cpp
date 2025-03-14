@@ -265,4 +265,126 @@ class Printer<string>
 };
 ```
 
-- Tương tự, phải ạo class riêng để đáp ứng cho tất cả các kiểu dữ liệu
+- Tương tự, phải tạo class riêng để đáp ứng cho tất cả các kiểu dữ liệu
+
+### Ex3
+
+- Quản lý giá trị cảm biến gửi về thông qua Template
+
+```c
+class Sensor{
+    public:
+        virtual double getValue() const = 0;
+
+        virtual string getUnit() const = 0;
+};
+```
+
+- Abstract class đại diện chung
+
+```c
+// Class đại diện cho cảm biến nhiệt độ (Temperature Sensor)
+class TemperatureSensor : public Sensor{
+    private:
+        double temp;
+
+    public:
+        double getValue() const override{
+            // temp = 30.3;
+            return 40.5; // Giá trị cảm biến giả định
+        }
+
+        string getUnit() const override{
+            return "Celsius";
+        }
+};
+```
+
+- Class đại diện cho cảm biến nhiệt độ (Temperature Sensor), đọc giá trị cảm biến, dùng từ khóa constant (do giá trị không thay đổi)
+
+```c
+template<typename Sensor1, typename Sensor2>
+class VehicleSensors{
+    private:
+        Sensor1 sensor1;  // Đối tượng cảm biến 1
+        Sensor2 sensor2;  // Đối tượng cảm biến 2
+
+    public:
+        // Constructor nhận vào hai đối tượng cảm biến
+        VehicleSensors(Sensor1 s1, Sensor2 s2) : sensor1(s1), sensor2(s2) {}
+
+        // Hàm hiển thị thông tin của cả hai cảm biến
+        void displaySensorsInfo() const {
+            cout << "Sensor 1 Value: " << sensor1.getValue() << " " << sensor1.getUnit() << endl;
+            cout << "Sensor 2 Value: " << sensor2.getValue() << " " << sensor2.getUnit() << endl;
+        }
+};
+
+```
+
+- Tạo Class Template để quản lý 2 cảm biến khác nhau, truyền vào 2 đối tượng cảm biến vừa tạo
+
+### Ex4: Kết hợp Template & variadic macro (định nghĩa, khai báo, truy xuất kiểu dữ liệu)
+
+`template <typename T, typename... Args>`: định nghĩa nhiều kiểu dữ liệu khác nhau, tổng quát, không biết được bao nhiêu
+
+ * typename... : định nghĩa nhiều kiểu dữ liệu tổng quát
+ * Args... : đại diện cho nhiều kiểu dữ liệu khi truyền vào hàm
+ * args... : đại diện cho nhiều tham số truyền vào hàm
+
+```c
+    cout << sum(1, 2, 3.5, 4, 5.5) << endl;
+    /*
+     * Lần 1: first = 1,    args... = 2, 3.5, 4, 5.5 --> 1 + sum(2, 3.5, 4, 5.5)
+     * Lần 2: first = 2,    args... = 3.5, 4, 5.5    --> 1 + 2 + sum(3.5, 4, 5.5)
+     * Lần 3: first = 3.5,  args... = 4, 5.5         --> 1 + 2 + 3.5 + sum(4, 5.5)
+     * Lần 4: fisrt = 4,    args... = 5.5            --> 1 + 2 + 3.5 + 4 + sum(5.5)
+     * Lần 5: value = 5.5                            --> 1 + 2 + 3.5 + 4 + 5.5 = 
+     */
+
+```
+
+- Ở lần 5, hàm chỉ còn 1 đối số nên không thể gọi auto sum -> cần định nghĩa hàm sung có 1 đối số
+
+- Thực tế là cộng ngược lại vì biến được lưu ở Stack
+
+```c
+template <typename... Args>
+void count(Args... args)
+{
+    cout << "Sô lượng tham số:  " << sizeof...(args) << endl;
+}
+```
+
+- Đếm số lượng tham số
+
+### Ex5: All of Template
+
+```c
+// Định nghxia class khi có ít nhát 1 dối số
+class MyClass<T, Args...> : public MyClass<Args...>
+```
+
+- Kế thừa từ chính bản thân nó nhưng ít đi 1 tham số (đệ quy trong class)
+
+```c
+/*
+ * Lần 1: 
+ *      + T = int, Args... = double, char
+ *      + first = 1, args... = 2.5, 'A'
+ *      --> In ra: 1                        --> MyClass<double, char>(2.5, 'A')
+ * 
+ * Lần 2:
+ *      + T = double, Args... = char
+ *      + first = 2.5, args... = 'A'
+ *      --> In ra: 1 2.5                    --> MyClass<char>('A')
+ * 
+ * Lần 3:
+ *      + T = char, Args... không còn
+ *      + first = 'A', args... không còn
+ *      --> In ra: 1 2.5 'A'                --> MyClass<>
+ * 
+ * Lần 4: 
+ *      --> In ra: 1 2.5 'A' No arguments
+ */
+```

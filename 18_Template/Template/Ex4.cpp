@@ -4,13 +4,17 @@ using namespace std;
 
 // variadic ...
 
+// 1 đối số
+
 template <typename T>
 T sum(T value)
 {
     return value;
 }
 
-template <typename T, typename... Args> // template <typename T, typename Args1, typename Args2, >
+// ít nhất 2 đối số trở lên
+
+template <typename T, typename... Args> // template <typename T, typename Args1, typename Args2,
 auto sum(T first, Args... args)         // T first, Args1 args1, Args2 args2, 
 {
     return first + sum(args...);
