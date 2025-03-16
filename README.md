@@ -1861,6 +1861,18 @@ Thêm 1 node vào phía cuối
 
 </details>
 
+<details>
+<summary>LESSON 11: JSON </summary> 
+
+
+</details>
+
+<details>
+<summary>LESSON 12:BINARY SEARCH - FILE OPERATIONS - CODE STANDARDS </summary> 
+
+
+</details>
+
 
 <details>
 <summary>LESSON 15: CLASS </summary> 
@@ -3999,7 +4011,29 @@ arr.insert({"four", "TT"});
 arr.erase("four");
 ```
 
+</details>
 
+<details>
+<summary>LESSON 21: LAMBDA </summary> 
+
+
+</details>
+
+<details>
+<summary>LESSON 22: DESIGN PATTERNS </summary> 
+
+
+</details>
+
+<details>
+<summary>LESSON 23: SMART POINTER </summary> 
+
+
+</details>
+
+
+<details>
+<summary>LESSON 24: THREAD </summary> 
 
 
 </details>
