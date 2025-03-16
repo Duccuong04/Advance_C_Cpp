@@ -297,3 +297,7 @@ arr.insert({"four", "TT"});
 ```c
 arr.erase("four");
 ```
+
+## 4. Algorithm
+
+- Thư viện STL (Standard Template Library) cung cấp một số thuật toán tiêu biểu thông qua algorithm. Các thuật toán này hoạt động trên các phạm vi hoặc các loại dữ liệu khác nhau, giúp thực hiện các nhiệm vụ như sắp xếp, tìm kiếm, chuyển đổi dữ liệu, và nhiều thao tác khác. 
