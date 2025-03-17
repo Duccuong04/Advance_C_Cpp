@@ -1,4 +1,4 @@
-[text](https://docs.google.com/presentation/d/1tKHvHQhobCC2wIHaE_VpEQzvqPVt6d2s/edit?usp=sharing&ouid=112023306400142991703&rtpof=true&sd=true)
+[Design Pattern](https://docs.google.com/presentation/d/1tKHvHQhobCC2wIHaE_VpEQzvqPVt6d2s/edit?usp=sharing&ouid=112023306400142991703&rtpof=true&sd=true)
 
 
 # Design Pattern
@@ -192,3 +192,13 @@ Code:
 - MVP (Model - View - Presenter) là một mẫu thiết kế thuộc nhóm Behavioral, phổ biến trong lập trình giao diện người dùng (UI) và phát triển ứng dụng. MVP tách biệt các thành phần của ứng dụng thành ba phần chính: Model, View, và Presenter. Cấu trúc này giúp dễ dàng quản lý, kiểm thử, và bảo trì mã nguồn.
 
 -->> Tách việc xử lí và hiển thị
+
+
+## 3. Structural Pattern (mẫu cấu trúc): tổ chức cấu trúc của các lớp và đối tượng
+
+### Decorator Pattern
+
+Decorator Pattern là một mẫu thiết kế thuộc nhóm structural patterns, cho phép thêm các chức năng hoặc hành vi mới cho một đối tượng mà không cần thay đổi cấu trúc của lớp đối tượng đó. Mẫu này giúp mở rộng tính năng của các đối tượng bằng cách bao bọc (wrapping) chúng trong các lớp decorator đặc biệt.
+
+- Giúp mã nguồn dễ bảo trì, chỉnh sửa, mở rộng, giảm sự phức tạp của kế thừa
+
