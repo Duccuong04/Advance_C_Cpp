@@ -27,7 +27,7 @@ int main(int argc, char const *argv[])
        
     /* Cách 1: Sử dụng con trỏ ham để gọi các phép toán */
     void(*ptr)(int, int); // khai báo con trỏ hàm
-    ptr = tong;           // hoặc ptr = &tong; trỏ đến địa chỉ của hàm tổng 
+    ptr = &tong;           // hoặc ptr = &tong; trỏ đến địa chỉ của hàm tổng 
     ptr(a, b);            // truyền vào tham số
 
     ptr = hieu;

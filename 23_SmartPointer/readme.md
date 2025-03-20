@@ -54,16 +54,22 @@ Nếu không có đối số (p mặc định là nullptr), con trỏ ptr sẽ t
 
 🛠️ Ví dụ:
 
+```c
 UniquePointer<int> p1(new int(10)); // p1 quản lý vùng nhớ chứa giá trị 10
 UniquePointer<int> p2;              // p2 trỏ đến nullptr
+
+```
 
 2️⃣ Destructor (~UniquePointer())
 
 
+```c
 ~UniquePointer()
 {
     if (ptr) delete ptr;
 }
+
+```
 
 📌 Chức năng:
 Tự động giải phóng vùng nhớ khi đối tượng UniquePointer bị hủy.
@@ -71,9 +77,13 @@ Nếu ptr trỏ đến một vùng nhớ hợp lệ, nó sẽ được giải ph
 
 🛠️ Ví dụ:
 
+
+```c
 {
     UniquePointer<int> p(new int(20)); // cấp phát động giá trị 20
 } // khi `p` ra khỏi scope, bộ nhớ được giải phóng tự động
+
+```
 
 3️⃣ Copy Constructor (XÓA)
 
@@ -251,9 +261,53 @@ p2 = std::move(p1); // ✅ p2 nhận quyền sở hữu, p1 trở thành nullptr
 | `UniquePointer& operator=(UniquePointer &&other)` | Move Assignment Operator |
 
 
+## Shared Pointer
+
+- shared_ptr là một smart pointer trong thư viện <memory> của C++.
+
+- Nó giúp quản lý bộ nhớ tự động bằng cách theo dõi số lượng shared_ptr cùng sở hữu một đối tượng.
+
+- Khi số lượng shared_ptr tham chiếu đến đối tượng giảm về 0, đối tượng đó sẽ tự động bị hủy.
+
+`    shared_ptr <HinhChuNhat> ptr1 (new HinhChuNhat(40,10));/ shared_ptr<HinhChuNhat> ptr1 = std::make_shared<HinhChuNhat>(40,10);
+`:
+
+📌ptr1:
+
+- Là một đối tượng shared_ptr, đóng vai trò như một smart pointer để quản lý đối tượng HinhChuNhat.
+
+📌new HinhChuNhat(40,10):
+
+- Cấp phát động một đối tượng của lớp HinhChuNhat với các tham số khởi tạo (40,10), tức là tạo một hình chữ nhật có chiều dài 40 và chiều rộng 10.
+Đối tượng này sẽ được quản lý bởi shared_ptr, nên không cần gọi delete thủ công.
 
 
+`ptr1.use_count()`: trả về số lượng shared_ptr cùng quản lý 1 đối tượng
 
+
+## Weak Pointer
+
+- Tham chiếu yếu (weak reference) đến một đối tượng được quản lý bởi shared_ptr.
+
+- Không tăng bộ đếm tham chiếu của shared_ptr. 
+
+- Không trực tiếp truy cập đến đối tượng (object) mà nó theo dõi. 
+
+📌 `cout << "ptr3: " << *(ptr3.lock()) << endl;`
+
+Trả về: Một shared_ptr hợp lệ mà weak pointer đang trỏ tới nếu đối tượng vẫn tồn tại, hoặc một shared_ptr null ptr nếu đối tượng đã bị hủy.
+
+📌 Hàm expired()
+
+Công dụng: Kiểm tra xem đối tượng mà weak_ptr trỏ tới có còn tồn tại không.
+
+true nếu đối tượng đã bị hủy.
+
+false nếu đối tượng vẫn còn tồn tại.
+
+## lvalue & rvlaue
+
+- `&&` biểu thị cho 1 giá trị tạm thời, có thể thay đổi đột ngột, sử dụng khi viết thư viện có liên quan đến hàm move()
 
 
 
