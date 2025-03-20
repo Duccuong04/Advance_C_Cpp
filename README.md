@@ -9,7 +9,7 @@ Contents
 **I. Compiler**
 - Là quá trình chuyển đổi ngôn ngữ bậc cao sang ngôn ngữ máy.
 - Gồm 4 giai đoạn
-![alt text](image.png)
+![alt text](images/image.png)
 
 ***Preprocessor (tiền xử lý)***: `gcc -E main.c -o main.i`. Các file trong source code (a.c, a.h, b.h, b.c, main.c,…) sẽ được biên dịch thành 1 file main.i. Ở giai đoạn này, trình biên dịch sẽ:
 
@@ -19,7 +19,7 @@ Contents
 
 ***Compiler***: File main.i được biên dịch thành file main.s (bao gồm các dòng lệnh được viết bằng ngôn ngữ assembly)
 
-![alt text](image-1.png)
+![alt text](images/image-1.png)
 
 ***Assembler***: Biên dịch ngôn ngữ assembly trong file main.s thành ngôn ngữ máy (file main.o)
 
@@ -39,14 +39,14 @@ Contents
     \*  <> (ví dụ #include <stdio.h>): khi run code, trình biên dịch tìm đến vị trí đã cài đặt file thư viện stdio.h trong bộ nhớ máy tính, sau đó sao chép toàn bộ nội dung file này vào file .i
     \* “…”: tìm trong thư mục chứ dự án hiện tại file nào có tên … sau đó sao chép toàn bộ nội dung file này vào file .i
 
-    ![alt text](image-2.png)
+    ![alt text](images/image-2.png)
 
 **2. Chỉ thị định nghĩa**
 
 ***#define***: Định nghĩa, thay thế một tên, biến hoặc hàm 
-![alt text](image-3.png)
+![alt text](images/image-3.png)
 -	Định nghĩa  giá trị của SIZE1 là 5 và  định nghĩa hàm
-![alt text](image-4.png)
+![alt text](images/image-4.png)
 -	Sau giai đoạn tiền xử lý, nội dung được define ở file .c được thay thế vào trong file .i
 
 ***undef***: hủy định nghĩa của một macro đã được định nghĩa trước đó bằng #define
@@ -485,7 +485,7 @@ Ví dụ:
 
 - `AND (&), OR(|), XOR(^), NOT(~)`
 
-![alt text](bitwise.png)
+![alt text](images/bitwise.png)
 
 Ví dụ:
 
@@ -1504,9 +1504,9 @@ int main(int argc, char const *argv[])
 - Struct: Viết thư viện, cấu hình, tính năng,..
 - Kết hợp struct và union trong việc truyền dữ liệu của 2 vi điều khiển
 
-![alt text](struct1.png)
+![alt text](images/struct1.png)
 
-![alt text](struct2.png)
+![alt text](images/struct2.png)
 
 ```c
 typedef union {
@@ -1544,7 +1544,7 @@ int main(int argc, char const *argv[])
 }
 ```
 - Debug truyền và nhận dữ liệu
-![alt text](debug.png)
+![alt text](images/debug.png)
 
 </details>
 
@@ -1557,7 +1557,7 @@ int main(int argc, char const *argv[])
 
 - Khi nhấn run chương trình trên window ( cấp nguồn cho vi điều khiển) thì những chương trình này sẽ được copy vào bộ nhớ RAM để thực thi.
 
-![alt text](memo.png)
+![alt text](images/memo.png)
 
 **1. Text segment (Code segment)**
 
@@ -1905,7 +1905,7 @@ int main(int argc, char const *argv[])
 
 ## Class
 
-![alt text](class.png)
+![alt text](images/class.png)
 
 - Kiểu tự định nghĩa ra giống struct & union, trong class: biến (thuộc tính), hàm (phương thức)
 
@@ -1942,7 +1942,7 @@ lớp cụ thể chứ không phải một hàm thông thường khác.
 
 
 
-![alt text](phuongthuc.png)
+![alt text](images/phuongthuc.png)
 
 
 ### Constructor
@@ -2158,7 +2158,7 @@ Hoặc định nghĩa là các thuộc tính của lớp cha.
  
 - Các loại thừa kế: Đơn thừa kế & Đa thừa kế
 
-![alt text](kethua.png)
+![alt text](images/kethua.png)
 
 **Chức năng**
 
@@ -2175,7 +2175,7 @@ xuất;
 - Chỉ cần thay đổi mã nguồn một lần khi thay đổi
 dữ liệu của các lớp
 
-![alt text](kethua2.png)
+![alt text](images/kethua2.png)
 
 ### 2.1. Các kiểu kế thừa: public, private, protected
 
@@ -2202,7 +2202,7 @@ thì chỉ có các lớp con mới có quyền truy cập
 
 
 
- ![alt text](kethua3.png)
+ ![alt text](images/kethua3.png)
 
 ```c
 #include <iostream>
@@ -2424,7 +2424,7 @@ protected -> protected
 
 - 1 class kết thừa từ nhiều class khác nhau
 
-![alt text](dakethua.png)
+![alt text](images/dakethua.png)
 
 ```c
 #include <iostream>
@@ -2987,7 +2987,7 @@ Hàm thành viên của lớp: (), [], ->, = (bắt buộc)
 
 - Các phép toán có thể tái định nghĩa:
 
-![alt text](dananghoa.png)
+![alt text](images/dananghoa.png)
 
 Ví dụ: Đa năng hóa toán tử + & - bằng hàm toàn cục, số lượng tham số bằng số toán hạng; sử dụng hàm thành viên của lớp
 
@@ -3171,7 +3171,7 @@ của các kiểu dữ liệu tùy ý được cung cấp
 
 - 1 template chỉ áp dụng đối với 1 hàm
 
-![alt text](template.png)
+![alt text](images/template.png)
 
 ```c
 #include <iostream>
@@ -4292,7 +4292,7 @@ Tại sao dùng static?
 
 - Observer (quan sát, giám sát): khi một đối tượng thay đổi trạng thái (Object), tất cả các đối tượng phụ thuộc (Observers) vào nó sẽ được tự động thông báo và cập nhật
 
-![alt text](observer.png)
+![alt text](images/observer.png)
 
 Code:
 
