@@ -9,8 +9,8 @@ Contents
 
 - Là quá trình chuyển đổi ngôn ngữ bậc cao sang ngôn ngữ máy.
 - Gồm 4 giai đoạn
-![alt text](image.png)
 
+![alt text](image-5.png)
 ***Preprocessor (tiền xử lý)***: `gcc -E main.c -o main.i`. Các file trong source code (a.c, a.h, b.h, b.c, main.c,…) sẽ được biên dịch thành 1 file main.i. Ở giai đoạn này, trình biên dịch sẽ:
 
 - Copy toàn bộ file thư viện (ví dụ #include <stdio.h>, #include “hello.h”,…)

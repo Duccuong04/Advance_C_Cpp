@@ -3,6 +3,9 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
+/**
+ * Mảng lưu trữ các thành phần trong queue
+ */
 typedef struct 
 {
     int *item; // mảng lưu trữ giá trị các phần tử
@@ -11,6 +14,10 @@ typedef struct
     int rear;  // chỉ số của phần tử cuối hàng đợi
 } Queue;
 
+/**
+ * Hàm khởi tạo các giá trị trong Queue
+ * Giá trị mặc định khi queue rỗng front = rear = -1, thêm phần tử đầu tiên front = rear = 0
+ */
 void init(Queue *queue, int size)
 {
     queue->size = size;
@@ -18,31 +25,44 @@ void init(Queue *queue, int size)
     queue->front = queue->rear = -1;
 }
 
+/**
+ * Hàm kiểm tra queue đầy chưa
+ */
 bool isFull(Queue queue)
 {
     return (queue.rear = queue.size - 1) ? true : false;
 }
 
+/**
+ * Hàm kiểm tra queue rỗng
+ * 2 trường hợp Queue rỗng
+ */
 bool isEmpty(Queue queue)
 {
     return ((queue.front == -1) || queue.front == queue.rear + 1) ? true : false;
-} // 2 trường hợp Queue rỗng
+} 
 
-// thêm vào cuối hàng đợi
+
+/**
+ * Enqueue thêm phần tử vào cuối hàng đợi
+ */
 void enqueue(Queue *queue, int data)
 {
+    // Kiểm tra queue đã đầy chưa
     if(isFull(*queue))
     {
         printf("Hàng đợi đầy\n");
     }
     else
     {
+        // Nếu queue rỗng, tăng front = rear = 0
         if(queue->front == -1 && queue->rear == -1)
         {
             queue->front = queue->rear = 0;
         }
         else
         {
+            // tăng rear để thêm phần tử
             ++queue->rear;
         }
 
@@ -52,7 +72,10 @@ void enqueue(Queue *queue, int data)
     }
 }
 
-// lấy phần tử ở đầu hàng đợi
+/**
+ *  Hàm lấy phần tử ở đầu hàng đợi
+ *  
+ * */
 int dequeue(Queue *queue)
 {
     if(isEmpty(*queue)) // giải tham chiếu để lấy được thông tin của địa chỉ
@@ -80,6 +103,9 @@ int dequeue(Queue *queue)
     }
 }
 
+/**
+ * Hàm lấy tất cả các giá trị trong Queue
+ */
 void display(Queue queue)
 {
     if(isEmpty(queue))
