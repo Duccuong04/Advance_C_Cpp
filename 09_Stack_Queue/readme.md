@@ -40,7 +40,13 @@ Kiểm tra hàng đợi đầy/rỗng.
 
 Ban đầu queue rỗng thì front = rear = -1; thêm vào phần tử đầu tiên, front = rear = 0
 
-Chỉ được thêm dữ liệu mới vào (enqueue) khi queue rỗng toàn bộ -> front, rear về lại vị trí ban đầu (không thể thêm phần tử mới kể cả khi phía trước có khoảng trống)
+
+## Nhược điểm của queue
+
+- Trong Linear Queue, nếu ‘rear’ đã đạt tới max, thì queue sẽ được coi là đầy và không thể thêm phần tử mới, ngay cả khi phía trước còn khoảng trống do các phần tử đã bị xóa.
+
+- Chỉ có thể thêm phần tử mới khi đã dequeue toàn bộ các phần tử hiện có (tức là queue rỗng hoàn toàn và front được reset về vị trí ban đầu).
+
 
 📌 Để khắc phục nhược điểm này của Linear Queue, sử dụng Circular Queue:
 
@@ -48,8 +54,25 @@ Chỉ được thêm dữ liệu mới vào (enqueue) khi queue rỗng toàn b�
 
 - Khi kiểm tra rỗng chỉ có 1 trường hợp
 
-📌 Ứng dụng Queue: truyền bit dữ liệu
+![alt text](circular.png)
 
+![alt text](circular2.png)
+
+**Điều kiện để 1 circular queue full là:**
+
+trường hợp rear = size - 1 : thì front = 0
+
+trường hợp rear khác size - 1: thì rear = front - 1
+
+```c
+// kiểm tra hàng đợi đầy
+int queue_IsFull(Queue queue)
+{
+    return (queue.rear + 1) % queue.size == queue.front;
+}
+```
+
+![alt text](circular3.png)
 
 ## So sánh Stack và Queue
 
