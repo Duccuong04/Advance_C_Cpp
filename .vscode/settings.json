@@ -1,9 +1,10 @@
 {
-    "C_Cpp.errorSquiggles": "disabled",
+    "C_Cpp.errorSquiggles": "enabled",
     "files.associations": {
         "text_encoding": "cpp",
         "typeinfo": "cpp",
         "iostream": "cpp",
         "ostream": "cpp"
-    }
+    },
+    "notebook.output.minimalErrorRendering": true
 }

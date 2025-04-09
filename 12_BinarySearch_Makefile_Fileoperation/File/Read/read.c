@@ -4,7 +4,7 @@
 
 #define DATABASE_PATH "..\\Data\\information.csv" // đường dẫn file csv
 
-typedef struct 
+typedef struct
 {
     char *name;
     int age;
