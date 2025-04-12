@@ -6,28 +6,11 @@
  * @date    2025-04-09
  * @author  Cuong Nguyen
  ***************************************************************************/
-#ifndef CSV_Reader_H
-#define CSV_Reader_H
+#ifndef CSV_READER_H
+#define CSV_READER_H
 
-#include "../Header/User_List.h"
-#define DATABASE_PATH "data/infor.csv"
+#include "User_List.h"
 
+void readCSV(const char *filename, Node **nameList, Node **phoneList);
 
-
-// Khai báo struct lưu các cột thông tin đọc được từ file infor.csv
-typedef struct 
-{
-    char *name;
-    int age;
-    char *addr;
-    char *phone;
-} User;
-
-// Đọc CSV và đưa dữ liệu name, phone vào danh sách liên kết
-void readCSV(const char *file_name, Node **nameList, Node **phoneList);
-
-// Giải phóng bộ nhớ đã cấp phát động
-void free_user(User *user);
-
-#endif // CSV_Reader_H
-
+#endif

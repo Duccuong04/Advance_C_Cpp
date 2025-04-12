@@ -4,7 +4,12 @@
         "text_encoding": "cpp",
         "typeinfo": "cpp",
         "iostream": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "user_list.h": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c",
+        "span": "c"
     },
     "notebook.output.minimalErrorRendering": true
 }

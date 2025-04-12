@@ -9,18 +9,18 @@
 #ifndef USER_LIST_H
 #define USER_LIST_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 typedef struct Node {
     char *data;
     struct Node *next;
 } Node;
 
-// Thêm node vào danh sách liên kết
-void add_node(Node **head, const char *data);
-
-// In danh sách
-void print_list(Node *head, const char *label);
-
-// Giải phóng bộ nhớ
+Node* create_node(const char *data);
+void add_sorted(Node **head, const char *data);
+void print_list(Node *head);
 void free_list(Node *head);
 
 #endif
