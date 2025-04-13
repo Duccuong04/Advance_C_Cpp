@@ -2365,6 +2365,236 @@ free(value);
 <details>
 <summary>LESSON 12:BINARY SEARCH - FILE OPERATIONS - CODE STANDARDS </summary> 
 
+## 1. Binary search
+
+### 1.1. Thuật toán
+
+- **Linear search**: tìm kiếm bằng cách duyệt qua từng phần tử trong 1 mảng theo thứ tự -> chậm -> **Binary Search**
+
+- **Binary search** giảm thời gian tìm kiếm (*đối với mảng đã được sắp xếp tăng dần*) bằng cách chia thành mảng nhỏ sau mỗi lần kiểm tra trước đó. Cụ thể:
+
+    - Sắp xếp mảng theo thứ tự tăng dần
+
+    - Ban đầu chỉ số **left**: phần tử 0 của mảng, **right**: size mảng - 1, **mid = (int) (right - left)/2**
+
+    - Nếu **middle = x** -> trả về vị trí phần tử cần tìm. 
+    
+        - **middle < x** -> **left = mid + 1 & right giữ nguyên**, giữ lại mảng bên phải mid
+  
+        - **middle > x** -> **right = mid - 1 & left giữ nguyên**, giữ lại mảng bên trái mid
+
+    - Lặp lại quá trình
+
+    - **Vòng lặp cuối left = mid = right**, cho right = mid - 1, lúc này **right < left** -> END.
+
+- Trường hợp mảng có 2 vị trí chứa phần tử cần tìm kiếm
+
+- Phần tử trong mảng ngẫu nhiên bằng hàm random
+
+## 2. Makefile
+
+> <span style="color:#FF5733; font-weight:bold">"Makefile"</span>  
+> [Source](https://docs.google.com/document/d/1orn_c-s46cFZCu2LZFVu9ztrV-fL6kTA/edit?tab=t.0#heading=h.gjdgxs)
+
+- Tự động hóa quá trình biên dịch, liên kết các tệp nguồn trong 1 dự án
+
+## 3. Binary Tree
+
+![alt text](image.png)
+
+- 1 Node của Binary Tree gồm
+
+    - Data
+
+    - Pointer to left child node
+
+    - Pointer to right child node
+
+
+![alt text](image-1.png)
+
+- Xây dựng cây nhị phân (perfect binary tree), sử dụng 1 mảng, left child của node i là 2i + 1, right child của node i là 2i + 2
+
+## 4. Binary Search Tree
+
+- Áp dụng thuật toán tìm kiếm vào cây nhị phân, tổ chức và lưu dữ liệu theo cách sắp xếp
+
+- Đặc điểm của cây tìm kiếm nhị phân
+
+    - Nhánh bên trái chứa các node có chỉ số (key) nhỏ hơn key node gốc
+
+    - Nhánh bên phải chức các node có chỉ số (key) lớn hơn key node gốc
+
+    - Mỗi nhánh trái và phải cũng là binary search tree
+
+![alt text](image-2.png)
+
+## 5. File operations
+
+- C cung cấp 1 số thư viện & hàm tiêu biểu để thực hiện theo tác với file
+
+- File CSV: lưu trữ và truyền tải dữ liệu dưới cấu trúc dạng bảng, dữ liệu các cột được phân tích bằng dấu phẩy
+
+```c
+Họ và tên, Tuổi, Địa chỉ, Số điện thoại
+John Doe, 30, 123 Main St, 555-1234
+Jane Smith, 25, 456 Oak St, 555-5678
+Bob Johnson, 40, 789 Pine St, 555-8765
+```
+- Mở file
+
+`FILE *file = fopen(const char *file_name, const char *access_mode);`
+
+    - r: Mở file với chế độ chỉ đọc file. Nếu mở file thành công thì trả về địa chỉ của phần tử đầu tiên trong file, nếu không thì trả về NULL.
+
+    - w: Mở file với chế độ ghi vào file. Nếu file đã tồn tại, thì sẽ ghi đè vào nội dung bên trong file. Nếu file chưa tồn tại thì sẽ tạo một file mới. Nếu không mở được file thì trả về NULL.
+
+    - a: Mở file với chế độ nối. Nếu mở file thành công thì trả về địa chỉ của phần tử cuối cùng trong file. Nếu file chưa tồn tại thì sẽ tạo một file mới. Nếu không mở được file thì trả về NULL.
+
+    - r+: Mở file với chế độ đọc và ghi file. Nếu mở file thành công thì trả về địa chỉ của phần tử đầu tiên trong file, nếu không thì trả về NULL.
+
+    - w+: Mở file với chế độ ghi và đọc file. Nếu file đã tồn tại thì trả về địa chỉ của phần tử đầu tiên của file. Nếu file chưa tồn tại thì sẽ tạo một file mới.
+
+    - a+: Mở file với chế độ nối và đọc file. Nếu file đã tồn tại thì trả về địa chỉ của phần tử cuối cùng của file. Nếu file chưa tồn tại thì sẽ tạo một file mới.
+
+```c
+
+//  đường dẫn tuyệt đối: "D:\\C_C++_Advanced\\Binary_Search-File_operation\\FILE\\information.csv"
+//  đường dẫn tương đối: ..\\FILE\\information.csv
+
+// Mở file để ghi, nếu chưa có tạo file mới
+    FILE *file = fopen(DATABASE_PATH, "w");
+```
+
+- Ghi dữ liệu vào file
+
+`fprintf(): ghi chuỗi vào file/ thêm danh sách đối số`
+
+- Đóng file đã mở `fclose()`
+
+</details>
+
+
+<details>
+<summary>LESSON 13: PThread </summary> 
+
+## Pthread
+- Với các lập trình thông thường trong C, các câu lệnh, hàm thường được gọi ra theo cơ chế polling (tuần tự) 
+
+- Thực hiện task1 thì mới thực hiện task 2 -> thư viện pthread cung cấp các hàm để có thể mô phỏng 2 tác vụ thực thi song song với nhau (bản chất của RTOS trong embedded)
+
+![alt text](image.png)
+
+- Các câu lệnh khai báo biến, gọi hàm được cấp địa chỉ trong memory layout -> đến câu lệnh nào thì con trỏ PC trỏ tới để thực thi
+
+- Bản chất của đa lường cũng là tuần tự nhưng phân chia thời gian ở các task
+
+### 1. Khái niệm
+
+- **Thread**: đơn vị nhỏ nhất trong 1 tiến trình, mỗi tiến trình có nhiều luồng khác nhau
+
+### 2. Thư viện Pthread
+
+- Cung cấp các hàng để chạy đa luồng, nhiều tác vụ cùng lúc
+
+- Đa nhiệm: xử lý nhiều tác vụ khác nhau
+
+- Đa luồng: chia thành nhiều luồng, mỗi luồng lại xử lý các đa nhiệm khác nhau
+
+- Đa lõi (bộ xử lý có nhiều nhân): nhiều lõi trên 1 CPU. Một lõi CPU không thực sự xử lý song song đa nhiệm hoặc luồng. Chúng lên lịch trình để chuyển đổi giữa các task mỗi mili giây -> tạo cảm giác chạy song song nhiều ứng dụng cùng lúc.
+
+### 2.1. Hàm pthread_create
+
+- Khởi chạy 1 thread và chỉ định thực hiện nhiệm vụ     
+
+`pthread_create(pthread_t *th, const pthread_attr_t *attr, void *(* func)(void *), void *arg)`
+
+`pthread_create(&t1, NULL, task1, NULL);`
+
+- Các tham số truyền vào
+
+    - 1: con trỏ kiểu pthread_t, tên luồn
+
+    - 2: thuộc tính của thread, đặt là NULL nếu dữ liệu thuộc tính mặc định (độ ưu tiên... RTOS)
+
+    - 3: địa chỉ hàm (nhiệm vụ) muốn luồng thực thi
+
+    - 4: tham số truyền vào trong hàm ở 3
+
+### 2.2. Hàm chờ một thread kết thúc
+
+- Chờ 1 luồng kết thúc
+
+`int pthread_join(pthread_t t, void **res)`
+
+    - 1: ID của thread muốn chờ
+
+    - 2: biến lưu trữ kết quả trả về từ 1 thread/ NULL
+
+```c
+pthread_t t1; // luồng 1
+    pthread_t t2; // luồng 2
+    pthread_t t3; // luồng 3
+
+    char *ptr = "Hello\n";
+   
+    pthread_create(&t1, NULL, task1, NULL);
+    pthread_create(&t2, NULL, task2, NULL);
+    pthread_create(&t3, NULL, display, ptr);
+
+    pthread_join(t1, NULL);
+    pthread_join(t2, NULL);
+```
+
+</details>
+
+
+<details>
+<summary>LESSON 14: Autosar Classic </summary> 
+
+## AUTomotive Open System ARchitecture
+
+- Chuẩn hóa kiến trúc phần mềm cho các hệ thống điều khiển điện tử (ECU)
+
+![alt text](image.png)
+
+### 1. Application layer
+
+- Gồm các thành phần phần mềm ứng dụng, thực hiện các chức năng cụ thể của xe (kiểm soát động cơ, phanh,...)
+
+- Gồm nhiều khối phần mềm ứng dụng (Software Component - SWC). Mỗi SWC  thực hiện 1 chức năng cụ thể trong hệ thống ECU. 
+
+- SWC chỉ quan tâm đến logic (tính toán), không quan tiếp đến phần cứng. Tuy nhiên, SWC vẫn có thể giao tiếp với nhau và giao tiếp với phần cứng thông qua RTE.
+
+![alt text](image-1.png)
+
+### 2. Runtime Environment
+
+- Liên kết SWC và BSW thông qua kiến trúc trừu tượng
+
+- **Truyền thông tin giữa các SWCs:** Trao đổi dữ liệu giữa các SWC mà không cần biết chi tiết về các phần còn lại của hệ thống
+
+- **Kết nối với BSW**: RTE cung cấp giao diện để các SWCs có thể tương tác với BSW. Điều này giúp các SWCs có thể sử dụng các dịch vụ hoặc điều khiển phần cứng một cách dễ dàng.
+
+- Hỗ trợ việc lập lịch và điều phối thực thi của các SWCs theo các sự kiện hoặc chu kỳ định sẵn. 
+
+![alt text](image-2.png)
+
+### 3. Basic Software
+
+- Là phần mềm cơ bản, bao gồm các thành phần phần mềm tiêu chuẩn để quản lý các chức năng hệ thống, giao tiếp và điều khiển phần cứng.
+
+- Vai trò hỗ trợ phần mềm ứng dụng SWC hoạt động trên phần cứng
+
+- Chia thành 3 lớp chính
+
+    - **Service Layer**: Lớp cao nhất trong BSW, cung cấp các dịch vụ hệ thống và tiện ích cho các phần mềm ứng dụng (SWC) và các lớp khác của BSW. Các dịch vụ này bao gồm quản lý thời gian thực, chẩn đoán, quản lý lỗi, quản lý nguồn,...
+
+    **- Hardware Abstraction Layer**:  cung cấp một giao diện trừu tượng cho tất cả các thiết bị ngoại vi và phần cứng cụ thể của ECU. Nó ẩn đi sự khác biệt về phần cứng của các thiết bị ngoại vi khác nhau và cung cấp một giao diện tiêu chuẩn cho các lớp bên trên (Service Layer và SWC).
+
+
+    **- Microcontroller Abstraction Layer - MCAL**: lớp thấp nhất trong BSW, cung cấp giao diện trừu tượng để tương tác trực tiếp với các thành phần phần cứng của vi điều khiển, chẳng hạn như bộ xử lý trung tâm (CPU), các thiết bị ngoại vi tích hợp (như ADC, PWM, UART), và các bộ định thời (timer).
+
 
 </details>
 
@@ -2601,6 +2831,7 @@ void Point::set_xVal(int value)
 - Tính trừu tượng: ẩn đi các hàm, các quá trình trung gian, logic xử lí và thuật toán
 
 </details>
+
 
 
 <details>
